@@ -210,7 +210,7 @@ Expected response: 403 Forbidden - "Insufficient permissions"
 ## Verifying Data in Neo4j
 
 1. Open Neo4j Browser at `http://localhost:7474`
-2. Login with username: `neo4j`, password: `password` (or your configured password)
+2. Login with username: `neo4j`, password: `changeme` (or your configured password)
 3. Run Cypher queries to view the data:
 
 ```cypher

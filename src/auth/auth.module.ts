@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { ConfigService } from '@nestjs/config';
+import type { StringValue } from 'ms';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { JwtStrategy } from './jwt.strategy';
@@ -14,12 +15,15 @@ import { AdminsModule } from '../admins/admins.module';
     AdminsModule,
     PassportModule,
     JwtModule.registerAsync({
-      useFactory: (configService: ConfigService) => ({
-        secret: configService.get<string>('JWT_SECRET'),
-        signOptions: { 
-          expiresIn: configService.get<string>('JWT_EXPIRATION') || '1d' as any
-        },
-      }),
+      useFactory: (configService: ConfigService) => {
+        const expiration = configService.get<string>('JWT_EXPIRATION') || '1d';
+        return {
+          secret: configService.get<string>('JWT_SECRET'),
+          signOptions: { 
+            expiresIn: expiration as StringValue | number
+          },
+        };
+      },
       inject: [ConfigService],
     }),
   ],

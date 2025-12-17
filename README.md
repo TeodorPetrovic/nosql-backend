@@ -62,8 +62,9 @@ JWT_EXPIRATION=1d
 
 Make sure your Neo4j database is running. You can use:
 - Neo4j Desktop
-- Neo4j Docker container: `docker run -p 7474:7474 -p 7687:7687 -e NEO4J_AUTH=neo4j/password neo4j`
+- Neo4j Docker container: `docker run -p 7474:7474 -p 7687:7687 -e NEO4J_AUTH=neo4j/changeme neo4j`
 - Neo4j AuraDB (cloud)
+- Or use the included docker-compose: `docker-compose up -d neo4j`
 
 ## Running the Application
 
